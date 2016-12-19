@@ -1,3 +1,4 @@
+
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
@@ -5,46 +6,35 @@ import { HeroComponent }  from './heroes/heroes.component';
 import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './heroes/hero-detail-component';
 import {HeroService} from "./heroes/hero.service";
-import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {HttpModule} from "@angular/http";
+import {InMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./data/in-memory-data.service";
+import {HeroSearchComponent} from "./shared/hero-search.component";
 
-const appRoutes: Routes = [
-  {
-    path: 'heroes',
-    component: HeroComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path: 'detail/:id',
-    component: HeroDetailComponent
-  }
-];
+import './rxjs-extentions';
+
+
 
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
 
   ],
   declarations: [
     AppComponent,
     HeroDetailComponent,
     HeroComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
-  providers: [
-    HeroService
-  ],
-  bootstrap: [AppComponent]
+  providers: [ HeroService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

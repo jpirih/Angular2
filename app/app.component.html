@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default">
+  <div class="navbar-brand">
+    Heroes App
+  </div>
+    <ul class="nav navbar-nav pull-right">
+      <li> <a [routerLink]="['/heroes']">Heroes</a></li>
+      <li><a [routerLink]="['/dashboard']">Dashboard</a></li>
+    </ul>
+</nav>
+<div class="container">
+  <h1>{{title}}</h1>
+
+  <router-outlet></router-outlet>
+</div>
+
